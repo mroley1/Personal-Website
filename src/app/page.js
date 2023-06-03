@@ -60,6 +60,13 @@ const experienceData = [
   }
 ]
 
+function * iter() {
+  var i = 0;
+  while (true) {
+    yield i++;
+  }
+}
+
 
 export default function Home() {
   return (
@@ -100,6 +107,7 @@ export function Title( {first, last} ) {
 }
 
 export function Summary() {
+  let keyGen = iter();
   return (
     <div style={{width: "100%", margin: "0px 0px -1px 0px", backgroundColor: "var(--main-colors-1)", display: "flex", justifyContent: "center"}}>
       <div style={{display: "flex", position: "relative", width: "max-content", maxWidth: "80%", margin: "70px 0px 100px 0px", flexWrap: "wrap", padding: "30px", backgroundColor: "#71c1de", borderRadius: "27px", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
@@ -107,7 +115,7 @@ export function Summary() {
         <div style={{width: "calc(100% - 300px)"}}>
           <div className={styles.body}>
             <ul>
-              {summaryData.map(el => <li data-icon={el.icon} className={styles.list}>{el.label}</li>)}
+              {summaryData.map(el => <li key={"item"+keyGen.next().value} data-icon={el.icon} className={styles.list}>{el.label}</li>)}
             </ul>
           </div>
         </div>
@@ -117,44 +125,10 @@ export function Summary() {
 }
 
 export function Experience() {
-  function TimelineStart() {
-    return (
-      <tr style={{margin: "0px", height: "100px", overflow: "hidden"}}>
-            <td style={{padding: "0px"}}>&nbsp;</td>
-            <td style={{width: "100px", height: "100px", padding: "0px", lineHeight: "normal", textAlign: "start", whiteSpace: "normal", fontWeight: "400", fontSize: "16px", fontStyle: "normal"}}><Image alt='timeline start' width={100} height={100} src="/assets/timeline_svgs/timeline_beg.svg" /></td>
-            <td style={{padding: "0px"}}>&nbsp;</td>
-        </tr>
-    )
-  }
-  function TimelineEntry(date, title, content) {
-    return (
-      <>
-        <tr style={{margin: "0px"}}>
-          <td id="timelineEntryTemplate_date" style={{height: "100px", padding: "0px", textAlign: "right", fontSize: "20pt", fontFamily: "var(--font-sriracha)", color: "rgb(34, 34, 34)", whiteSpace: "nowrap"}}>{date}</td>
-          <td id="timelineEntryTemplate_barExtension" rowspan="2" style={{width: "100px", height: "100px", padding: "0px", verticalAlign: "top", overflow: "hidden"}}>
-            <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
-              <img src="./assets/timeline_svgs/timeline_entry.svg" />
-              <svg style={{width: "100px", height: "100%"}} preserveAspectRatio="none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="40" width="20" height="100" fill="black"/>
-              </svg>
-            </div>
-          </td>
-          <td id="timelineEntryTemplate_title" style={{fontSize: "45pt", fontFamily: "var(--font-merriweather)"}}>{title}</td>
-        </tr>
-        <tr style={{margin: "0px"}}>
-          <td style={{width: "100px", padding: "0px"}}>&nbsp;</td>
-          <td id="timelineEntryTemplate_content" style={{verticalAlign: "top"}}></td>
-        </tr>
-      </>
-    )
-  }
   return (
     <div style={{width: "100%", margin: "0px 0px -1px 0px", backgroundColor: "var(--main-colors-2)", display: "flex", justifyContent: "center"}}>
       <div className={styles.timeline_container}>
-        <table style={{borderCollapse: "collapse", borderSpacing: "0px"}}>
-          {TimelineStart()}
-          {TimelineEntry("Sept 2023", "Carpenter", null)}
-        </table>
+        
     </div>
   </div>
   )
