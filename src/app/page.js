@@ -2,8 +2,6 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import { sriracha, merriweather } from './layout.js';
 
-import profilePhoto from "./assets/Oley_Matthew_profile.png"
-
 export default function Home() {
   return (
     <html className={[sriracha.variable, merriweather.variable].join(" ")}>
@@ -43,7 +41,7 @@ export function Summary() {
   return (
     <div style={{width: "100%", margin: "0px 0px -1px 0px", backgroundColor: "var(--main-colors-1)", display: "flex", justifyContent: "center"}}>
       <div style={{display: "flex", position: "relative", width: "max-content", maxWidth: "80%", margin: "70px 0px 100px 0px", flexWrap: "wrap", padding: "30px", backgroundColor: "#71c1de", borderRadius: "27px", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
-        <Image src={profilePhoto} alt='profile picture' className={styles.circle_picture} />
+        <Image src="/assets/Oley_Matthew_profile.png" width={400} height={400} alt='profile picture' className={styles.circle_picture} />
         <div style={{width: "calc(100% - 300px)"}}>
           <div className={styles.body}>
             <ul>
