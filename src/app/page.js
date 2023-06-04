@@ -66,6 +66,68 @@ const experienceData = [
   }
 ]
 
+const skillsData = [
+  {
+    title: "Javascript",
+    skill: 10,
+    image: "/assets/skillslogos_pngs/JavaScript_logo.png",
+    slips: [
+      {name: "Web", Link: "https://www.merriam-webster.com/dictionary/recursion"},
+      {name: "Node", Link: "https://nodejs.org/en/about"},
+      {name: "Firebase", Link: "https://firebase.google.com/"},
+      {name: "Discord API", Link: "https://discord.js.org/"},
+      {name: "Pteridactyl API", Link: "https://pterodactyl.io/"},
+      {name: "ECMAScript Modules", Link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"}
+    ]
+  },
+  {
+    title: "Python",
+    skill: 8,
+    image: "/assets/skillslogos_pngs/Python_logo.png",
+    slips: [
+      {name: "Discord API", Link: "https://discordpy.readthedocs.io/en/stable/"},
+      {name: "tkinter", Link: "https://docs.python.org/3/library/tkinter.html"}
+    ]
+  },
+  {
+    title: "C/C++",
+    skill: 6,
+    image: "/assets/skillslogos_pngs/Cpp_logo.png",
+    slips: [
+      {name: "Make", Link: "https://linuxhandbook.com/using-make/"},
+      {name: "GDB", Link: "https://sourceware.org/gdb/"},
+      {name: "Gitlab CI/CD Testing", Link: "https://about.gitlab.com/topics/ci-cd/"},
+      {name: "Vim editor", Link: "https://www.vim.org/about.php"}
+    ]
+  },
+  {
+    title: "Java",
+    skill: 5,
+    image: "/assets/skillslogos_pngs/Java_logo.png",
+    slips: [
+      {name: "JavaFX", Link: "https://openjfx.io/"},
+      {name: "Networking", Link: "https://docs.oracle.com/javase/tutorial/networking/overview/networking.html"}
+    ]
+  }
+]
+
+const projectsData = [
+  {
+    title: "Online Grimoire",
+    description: "The Grimore is a tool used by the storyteller in the game Blood on the Clocktower. This is an online implementation of that game tool. The website works best on a touchscreen laptop or other large screen in portrait mode.",
+    image: "/assets/grimoire.png",
+    link: "https://grimoire.csh.rit.edu/",
+    github: "https://github.com/mroley1/Online-Grimoire"
+  },
+  {
+    title: "Personal Website",
+    description: "Written in pure HTML, CSS, and JavaScript. Using Figma to draft elements. Currently being converted over to React.",
+    image: "/assets/personal_site.PNG",
+    link: null,
+    github: "https://github.com/mroley1/mroley1.github.io"
+  }
+]
+
 function * iter() {
   var i = 1;
   while (true) {
@@ -171,7 +233,7 @@ export function Experience() {
           </svg>
         </div>
         <div key={keyGen.next().value} style={{height: "100%", gridArea: row2+" / 3 / "+(row2+1)+" / 4", textAlign: "left", fontSize: "45pt", fontFamily: "var(--font-merriweather)", lineHeight: "100px"}}>
-          <ul style={{fontSize: "20pt", fontFamily: "var(--font-merriweather)", lineHeight: "normal"}}>
+          <ul style={{fontSize: "20pt", fontFamily: "var(--font-merriweather)", lineHeight: "normal", margin: "0px 0px 25px 0px"}}>
             {element.points.map(el => <li key={pointKeyGen.next().value}>{el}</li>)}
           </ul>
         </div>
@@ -188,7 +250,7 @@ export function Experience() {
         <div key={keyGen.next().value} style={{width: "100px", height: "100px", gridArea: row+" / 2 / "+(row+1)+" / 3"}}>
           <Image src="/assets/timeline_svgs/timeline_note.svg" width={100} height={100} alt='Timeline note' />
         </div>
-        <div key={keyGen.next().value} style={{height: "100px", width: "min-content", gridArea: row+" / 3 / "+(row+1)+" / 4", textAlign: "left", fontSize: "45pt", fontFamily: "var(--font-merriweather)", whiteSpace: "nowrap", lineHeight: "100px"}}>
+        <div key={keyGen.next().value} style={{height: "100px", width: "min-content", gridArea: row+" / 3 / "+(row+1)+" / 4", textAlign: "left", fontSize: "30pt", fontFamily: "var(--font-merriweather)", whiteSpace: "nowrap", lineHeight: "100px"}}>
           <span style={{display: "inline-block", verticalAlign: "middle"}}>{element.title}</span>
         </div>
       </>
