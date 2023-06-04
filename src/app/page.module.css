@@ -23,7 +23,7 @@
 .body {font-family: var(--font-merriweather); position: relative;}
 .list {padding-left: 15px; margin-top: 10px;}
 
-.timeline_container {display: grid; position: relative; width: min-content; min-width: 75%; margin: 50px 0px 50px 0px; padding: 15px;}
+.timeline_container {display: grid; grid: none / min-content 100px auto; position: relative; width: 75%; min-width: 75%; margin: 50px 0px 50px 0px; padding: 15px;}
 
 .skills_container {display: flex; width: 840px; left: calc(50% - 420px); position: relative; margin: 70px 0px 70px 0px; flex-wrap: wrap; padding: 15px; flex-direction: column;}
 .skills_skill {width: min-content; display: flex; margin: 10px 0px 10px 0px; background-color: var(--main-colors-4); border-radius: 25px; padding: 20px 35px 20px 35px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);}

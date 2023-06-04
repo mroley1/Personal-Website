@@ -25,6 +25,9 @@ const summaryData = [
 
 const experienceData = [
   {
+    type: "start"
+  },
+  {
     type: "entry",
     date: "Sept 2023",
     title: "Carpenter",
@@ -57,11 +60,14 @@ const experienceData = [
     points: [
       "Solved technology and connection issues for students and faculty, maintain and repair equipment."
     ]
+  },
+  {
+    type: "end"
   }
 ]
 
 function * iter() {
-  var i = 0;
+  var i = 1;
   while (true) {
     yield i++;
   }
@@ -125,10 +131,81 @@ export function Summary() {
 }
 
 export function Experience() {
+  let keyGen = iter();
+  let rowGen = iter();
+  function drawSection(element) {
+    switch (element.type) {
+      case "start": return TimelineStart(element);
+      case "entry": return TimelineEntry(element);
+      case "note": return TimelineNote(element);
+      case "end": return TimelineEnd(element);
+    }
+  }
+  function TimelineStart() {
+    let row = rowGen.next().value;
+    return (
+      <div key={keyGen.next().value} style={{width: "100px", height: "100px", gridArea: row+" / 2 / "+(row+1)+" / 3"}}>
+        <Image src="/assets/timeline_svgs/timeline_beg.svg" width={100} height={100} alt='Timeline beginning' />
+      </div>
+    )
+  }
+  function TimelineEntry(element) {
+    let row1 = rowGen.next().value;
+    let row2 = rowGen.next().value;
+    let pointKeyGen = iter();
+    return (
+      <>
+        <div key={keyGen.next().value} style={{height: "100px", width: "min-content", gridArea: row1+" / 1 / "+(row1+1)+" / 2", textAlign: "right", fontSize: "20pt", fontFamily: "var(--font-sriracha)", color: "rgb(34, 34, 34)", whiteSpace: "nowrap", lineHeight: "100px"}}>
+          <span style={{display: "inline-block", verticalAlign: "middle"}}>{element.date}</span>
+        </div>
+        <div key={keyGen.next().value} style={{width: "100px", height: "100px", gridArea: row1+" / 2 / "+(row1+1)+" / 3"}}>
+          <Image src="/assets/timeline_svgs/timeline_entry.svg" width={100} height={100} alt='Timeline entry' />
+        </div>
+        <div key={keyGen.next().value} style={{height: "100px", width: "min-content", gridArea: row1+" / 3 / "+(row1+1)+" / 4", textAlign: "left", fontSize: "45pt", fontFamily: "var(--font-merriweather)", whiteSpace: "nowrap", lineHeight: "100px"}}>
+          <span style={{display: "inline-block", verticalAlign: "middle"}}>{element.title}</span>
+        </div>
+        
+        <div key={keyGen.next().value} style={{width: "100px", gridArea: row2+" / 2 / "+(row2+1)+" / 3"}}>
+          <svg style={{width: "100px", height: "100%"}}viewbox="0 0 100 100" preserveAspectRatio="none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" width="20" height="100" fill="black"/>
+          </svg>
+        </div>
+        <div key={keyGen.next().value} style={{height: "100%", gridArea: row2+" / 3 / "+(row2+1)+" / 4", textAlign: "left", fontSize: "45pt", fontFamily: "var(--font-merriweather)", lineHeight: "100px"}}>
+          <ul style={{fontSize: "20pt", fontFamily: "var(--font-merriweather)", lineHeight: "normal"}}>
+            {element.points.map(el => <li key={pointKeyGen.next().value}>{el}</li>)}
+          </ul>
+        </div>
+      </>
+    )
+  }
+  function TimelineNote(element) {
+    let row = rowGen.next().value;
+    return (
+      <>
+        <div key={keyGen.next().value} style={{height: "100px", width: "min-content", gridArea: row+" / 1 / "+(row+1)+" / 2", textAlign: "right", fontSize: "20pt", fontFamily: "var(--font-sriracha)", color: "rgb(34, 34, 34)", whiteSpace: "nowrap", lineHeight: "100px"}}>
+          <span style={{display: "inline-block", verticalAlign: "middle"}}>{element.date}</span>
+        </div>
+        <div key={keyGen.next().value} style={{width: "100px", height: "100px", gridArea: row+" / 2 / "+(row+1)+" / 3"}}>
+          <Image src="/assets/timeline_svgs/timeline_note.svg" width={100} height={100} alt='Timeline note' />
+        </div>
+        <div key={keyGen.next().value} style={{height: "100px", width: "min-content", gridArea: row+" / 3 / "+(row+1)+" / 4", textAlign: "left", fontSize: "45pt", fontFamily: "var(--font-merriweather)", whiteSpace: "nowrap", lineHeight: "100px"}}>
+          <span style={{display: "inline-block", verticalAlign: "middle"}}>{element.title}</span>
+        </div>
+      </>
+    )
+  }
+  function TimelineEnd() {
+    let row = rowGen.next().value;
+    return (
+      <div key={keyGen.next().value} style={{width: "100px", height: "100px", gridArea: row+" / 2 / "+(row+1)+" / 3"}}>
+        <Image src="/assets/timeline_svgs/timeline_end.svg" width={100} height={100} alt='Timeline end' />
+      </div>
+    )
+  }
   return (
     <div style={{width: "100%", margin: "0px 0px -1px 0px", backgroundColor: "var(--main-colors-2)", display: "flex", justifyContent: "center"}}>
       <div className={styles.timeline_container}>
-        
+        {experienceData.map(el => drawSection(el))}
     </div>
   </div>
   )
