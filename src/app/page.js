@@ -233,7 +233,7 @@ export function Experience() {
           </svg>
         </div>
         <div key={keyGen.next().value} style={{height: "100%", gridArea: row2+" / 3 / "+(row2+1)+" / 4", textAlign: "left", fontSize: "45pt", fontFamily: "var(--font-merriweather)", lineHeight: "100px"}}>
-          <ul style={{fontSize: "20pt", fontFamily: "var(--font-merriweather)", lineHeight: "normal", margin: "0px 0px 25px 0px"}}>
+          <ul style={{fontSize: "20pt", fontFamily: "var(--font-merriweather)", lineHeight: "normal", margin: "0px 0px 25px 0px", width: "100%"}}>
             {element.points.map(el => <li key={pointKeyGen.next().value}>{el}</li>)}
           </ul>
         </div>
