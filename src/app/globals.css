@@ -29,4 +29,4 @@
 
 
 html {scroll-behavior: smooth;}
-body {background-color: var(--main-colors-BG); margin: 0px; position: relative;}
+body {background-color: var(--main-colors-BG); margin: 0px; position: relative; width: 100vw; overscroll-behavior: none; text-size-adjust: auto;}
